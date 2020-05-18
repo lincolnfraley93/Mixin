@@ -53,7 +53,7 @@ public extension StandardTableMixin {
         guard let tableView = findTableView else { return }
         tableView.tableFooterView = {
             if showPagingSpinner() {
-                let v = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+                let v = UIActivityIndicatorView(style: .gray)
                 v.hidesWhenStopped = true
                 v.startAnimating()
                 return v

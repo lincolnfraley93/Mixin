@@ -9,7 +9,7 @@
 import UIKit
 import Mixin
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ViewControllerMixinable, KeyboardMixin {
     var findTableView: UITableView? { return tableView }
     
     @IBOutlet weak var tableView: UITableView!
@@ -27,71 +27,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("ViewController viewWillAppear")
-    }
 }
 
-extension ViewController: KeyboardMixin {}
-extension ViewController: StandardTableMixin {
-    func showPagingSpinner() -> Bool {
-        return fetchingMore
-    }
-    
-    func refresh() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            if #available(iOS 10.0, *) {
-                self.tableView.refreshControl?.endRefreshing()
-            }
-        }
-    }
-    func loadMore() {
-        if fetchingMore { return }
-        fetchingMore = true
-        tableView.reloadData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.dataCount += 50
-            self.fetchingMore = false
-            self.tableView.reloadData()
-        }
-        print("loadMore")
-    }
-}
-extension ViewController: TextFieldReturnMixin {
-}
-
-extension ViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("ViewController textFieldShouldReturn")
-        return true
-    }
-}
-
-extension ViewController: UIScrollViewDelegate {
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        title = "Begin Dragging"
-    }
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("ViewController scrollViewDidScroll")
-        
-    }
-}
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.reloadData()
         print("ViewController didSelectRowAt")
     }
 }
-
-extension ViewController: ScrollFinishMixin {
-    func scrollFinish(_ scrollView: UIScrollView) {
-        title = "Finish Scrolling"
-        print("scrollFinish")
-    }
-}
-
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataCount
@@ -102,3 +45,26 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
 }
+
+public protocol NavigationBarHiding: ViewControllerMixinable {
+  
+}
+
+public extension NavigationBarHiding {
+  
+  private func viewWillAppear(_ animated: Bool) {
+    (self as? UIViewController)?.navigationController?.setNavigationBarHidden(true, animated: false)
+  }
+  private func viewWillDisappear(_ animated: Bool) {
+    (self as? UIViewController)?.navigationController?.setNavigationBarHidden(true, animated: false)
+  }
+  
+  var viewControllerLifeCycle_NavigationBarHiding: UIViewControllerLifeCycle {
+      return BlockViewControllerLifeCycle(
+          viewWillAppear: viewWillAppear,
+          viewWillDisappear: viewWillDisappear
+      )
+  }
+}
+
+extension ViewController: NavigationBarHiding {}

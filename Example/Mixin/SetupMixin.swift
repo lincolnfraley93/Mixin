@@ -14,6 +14,7 @@ extension ViewControllerMixinable {
         return [
             (self as? StandardTableMixin)?.viewControllerLifeCycle_StandardTableMixin,
             (self as? KeyboardMixin)?.viewControllerLifeCycle_KeyboardMixin,
+            (self as? NavigationBarHiding)?.viewControllerLifeCycle_NavigationBarHiding,
         ]
     }
 }

@@ -1,22 +1,27 @@
 PODS:
-  - Mixin (0.1.0)
-  - Nimble (7.0.2)
-  - Quick (1.2.0)
+  - Mixin (0.1.2)
+  - Nimble (8.0.9)
+  - Quick (2.2.0)
 
 DEPENDENCIES:
   - Mixin (from `../`)
-  - Nimble (~> 7.0.2)
-  - Quick (~> 1.2.0)
+  - Nimble
+  - Quick
+
+SPEC REPOS:
+  trunk:
+    - Nimble
+    - Quick
 
 EXTERNAL SOURCES:
   Mixin:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  Mixin: 7cc678a7bbc1e1a5f6d739c781e29e25a1f4cedc
-  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
-  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  Mixin: 59006a55a1b672f4c9d1807e8ea9516921e66fa4
+  Nimble: 98b888285a615fd34f20e61753cf58ea1402bde4
+  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
 
-PODFILE CHECKSUM: b3629325c9e96fe3460d062f51d09ccde53e06d9
+PODFILE CHECKSUM: 96df5aca5504e261e5d6d9b36ac0ec928428707f
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.8.3

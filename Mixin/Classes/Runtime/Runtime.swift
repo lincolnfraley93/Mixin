@@ -44,8 +44,8 @@ protocol SelfAware2: class {
     static func awake2()
 }
 
-class NothingToSeeHere {
-    static func harmlessFunction() {
+public class Mixin {
+    public static func initialize() {
         let typeCount = Int(objc_getClassList(nil, 0))
         let types = UnsafeMutablePointer<AnyClass>.allocate(capacity: typeCount)
         let autoreleasingTypes = AutoreleasingUnsafeMutablePointer<AnyClass>(types)
@@ -54,17 +54,6 @@ class NothingToSeeHere {
             (types[index] as? SelfAware.Type)?.awake()
             (types[index] as? SelfAware2.Type)?.awake2()
         }
-        types.deallocate(capacity: typeCount)
+        types.deallocate()
     }
 }
-extension UIApplication {
-    private static let runOnce: Void = {
-        NothingToSeeHere.harmlessFunction()
-    }()
-    override open var next: UIResponder? {
-        // Called before applicationDidFinishLaunching
-        UIApplication.runOnce
-        return super.next
-    }
-}
-

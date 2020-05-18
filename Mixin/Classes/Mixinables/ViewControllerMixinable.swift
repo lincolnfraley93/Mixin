@@ -36,17 +36,17 @@ public class MixinableViewControllerLifeCycle<T: ViewControllerMixinable>: NSObj
 }
 
 public class BlockViewControllerLifeCycle: NSObject, UIViewControllerLifeCycle {
-    typealias LoadView = () -> Void
-    typealias LoadViewIfNeeded = () -> Void
-    typealias ViewDidLoad = () -> Void
-    typealias Prepare = (_ segue: UIStoryboardSegue, _ sender: Any?) -> Void
-    typealias ViewWillAppear = (_ animated: Bool) -> Void
-    typealias ViewDidAppear = (_ animated: Bool) -> Void
-    typealias ViewWillDisappear = (_ animated: Bool) -> Void
-    typealias ViewDidDisappear = (_ animated: Bool) -> Void
-    typealias ViewWillLayoutSubviews = () -> Void
-    typealias ViewDidLayoutSubviews = () -> Void
-    typealias DidReceiveMemoryWarning = () -> Void
+    public typealias LoadView = () -> Void
+    public typealias LoadViewIfNeeded = () -> Void
+    public typealias ViewDidLoad = () -> Void
+    public typealias Prepare = (_ segue: UIStoryboardSegue, _ sender: Any?) -> Void
+    public typealias ViewWillAppear = (_ animated: Bool) -> Void
+    public typealias ViewDidAppear = (_ animated: Bool) -> Void
+    public typealias ViewWillDisappear = (_ animated: Bool) -> Void
+    public typealias ViewDidDisappear = (_ animated: Bool) -> Void
+    public typealias ViewWillLayoutSubviews = () -> Void
+    public typealias ViewDidLayoutSubviews = () -> Void
+    public typealias DidReceiveMemoryWarning = () -> Void
     
     private let _loadView: LoadView?
     private let _loadViewIfNeeded: LoadViewIfNeeded?
@@ -60,7 +60,7 @@ public class BlockViewControllerLifeCycle: NSObject, UIViewControllerLifeCycle {
     private let _viewDidLayoutSubviews: ViewDidLayoutSubviews?
     private let _didReceiveMemoryWarning: DidReceiveMemoryWarning?
     
-    init(
+    public init(
         loadView: LoadView? = nil,
         loadViewIfNeeded: LoadViewIfNeeded? = nil,
         viewDidLoad: ViewDidLoad? = nil,
