@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
 Add React.js-like mixins to your iOS projects
                        DESC
 
-  s.homepage         = 'https://github.com/oney/Mixin'
+  s.homepage         = 'https://github.com/lincolnfraley93/Mixin'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Howard Yang' => 'appdevoney@gmail.com' }
   s.source           = { :git => 'https://github.com/oney/Mixin.git', :tag => s.version.to_s }
